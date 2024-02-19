@@ -30,10 +30,10 @@ public class TargetAquisition : MonoBehaviour
                 GetFurthestEnemy();
                 break;
             case TargetPriority.MostHealth:
-                GetEnemyWithMostHelath();
+                GetEnemyWithMostHealth();
                 break;
             case TargetPriority.LeastHealth:
-                GetEnemyWithLeastHelath();
+                GetEnemyWithLeastHealth();
                 break;
         }
     }
@@ -48,6 +48,7 @@ public class TargetAquisition : MonoBehaviour
         float maxDistance = 0;
         foreach (var enemy in _enemiesInRange)
         {
+            if(enemy.gameObject.activeInHierarchy == false) continue;
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
             if (distance > maxDistance)
             {
@@ -62,6 +63,7 @@ public class TargetAquisition : MonoBehaviour
         float minDistance = Mathf.Infinity;
         foreach (var enemy in _enemiesInRange)
         {
+            if (enemy.gameObject.activeInHierarchy == false) continue;
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
             if (distance < minDistance)
             {
@@ -71,11 +73,12 @@ public class TargetAquisition : MonoBehaviour
         }
     }
 
-    private void GetEnemyWithMostHelath()
+    private void GetEnemyWithMostHealth()
     {
         float maxHealth = 0;
         foreach (var enemy in _enemiesInRange)
         {
+            if (enemy.gameObject.activeInHierarchy == false) continue;
             float health = enemy.GetComponent<IDamagable>().Health;
             if (health > maxHealth)
             {
@@ -85,11 +88,12 @@ public class TargetAquisition : MonoBehaviour
         }
     }
 
-    private void GetEnemyWithLeastHelath()
+    private void GetEnemyWithLeastHealth()
     {
         float minHealth = Mathf.Infinity;
         foreach (var enemy in _enemiesInRange)
         {
+            if (enemy.gameObject.activeInHierarchy == false) continue;
             float health = enemy.GetComponent<IDamagable>().Health;
             if (health < minHealth)
             {
@@ -103,7 +107,7 @@ public class TargetAquisition : MonoBehaviour
     {
         if (_currentTarget != null)
         {
-            if(Vector3.Distance(transform.position, _currentTarget.transform.position) > _range)
+            if(Vector3.Distance(transform.position, _currentTarget.transform.position) > _range || _currentTarget.gameObject.activeInHierarchy == false)
             {
                 _currentTarget = null;
             }

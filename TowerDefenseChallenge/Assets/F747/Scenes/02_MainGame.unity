@@ -53604,7 +53604,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _range: 10
-  _targetPriority: 0
+  _targetPriority: 3
 --- !u!23 &8409620294799560163
 MeshRenderer:
   m_ObjectHideFlags: 0

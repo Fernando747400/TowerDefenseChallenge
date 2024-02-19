@@ -50,7 +50,7 @@ public class BasicProyectile : MonoBehaviour
 
     private void HomeOnTarget()
     {
-        if (_target != null)
+        if (_target != null && _target.gameObject.activeInHierarchy)
         {
             Vector3 direction = _target.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
