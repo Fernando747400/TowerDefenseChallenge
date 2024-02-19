@@ -1,21 +1,28 @@
+using Lean.Pool;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class WayPointFollower : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private float _moveSpeed = 1f;
-    [SerializeField] private float _rotationForce = 1f;
-    [SerializeField] private float _arriveDistance = 1f;
+    [HideInInspector] public UnityEvent OnArriveToLastCheckpoint = new UnityEvent();
 
-    [SerializeField] private WayPointManager _waypointsToFollow;
-    
+    private float _moveSpeed = 1f;
+    private float _rotationForce = 1f;
+    private float _arriveDistance = 1f;
+    private WayPointManager _waypointsToFollow; 
+
     private Rigidbody _rigidBody;
     private bool _isLastWaypoint;
     private Transform _currentWaypoint;
     private Vector3 _waypointPosition;
     private Vector3 _destinationPosition;
     private Vector3 _directionToWaypoint;
+
+    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
+    public float RotationForce { get => _rotationForce; set => _rotationForce = value; }
+    public float ArriveDistance { get => _arriveDistance; set => _arriveDistance = value; }
+    public WayPointManager WaypointsToFollow { get => _waypointsToFollow; set => _waypointsToFollow = value; }
 
     private void Awake()
     {
@@ -89,6 +96,7 @@ public class WayPointFollower : MonoBehaviour
 
     private void ArriveToLastCheckpoint()
     {
-        Debug.Log("Arrived to last");
+        OnArriveToLastCheckpoint.Invoke();
+        LeanPool.Despawn(gameObject);
     }
 }
