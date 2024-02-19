@@ -35,6 +35,12 @@ public class TargetAquisition : MonoBehaviour
             case TargetPriority.LeastHealth:
                 GetEnemyWithLeastHealth();
                 break;
+            case TargetPriority.Fastest:
+                GetFastestEnemy();
+                break;
+            case TargetPriority.Slowest:
+                GetSlowestEnemy();
+                break;
         }
     }
 
@@ -98,6 +104,36 @@ public class TargetAquisition : MonoBehaviour
             if (health < minHealth)
             {
                 minHealth = health;
+                _currentTarget = enemy.gameObject;
+            }
+        }
+    }
+
+    private void GetFastestEnemy()
+    {
+        float maxSpeed = 0;
+        foreach (var enemy in _enemiesInRange)
+        {
+            if (enemy.gameObject.activeInHierarchy == false) continue;
+            float speed = enemy.GetComponent<WayPointFollower>().MoveSpeed;
+            if (speed > maxSpeed)
+            {
+                maxSpeed = speed;
+                _currentTarget = enemy.gameObject;
+            }
+        }
+    }
+
+    private void GetSlowestEnemy()
+    {
+        float minSpeed = Mathf.Infinity;
+        foreach (var enemy in _enemiesInRange)
+        {
+            if (enemy.gameObject.activeInHierarchy == false) continue;
+            float speed = enemy.GetComponent<WayPointFollower>().MoveSpeed;
+            if (speed < minSpeed)
+            {
+                minSpeed = speed;
                 _currentTarget = enemy.gameObject;
             }
         }

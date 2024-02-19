@@ -3,6 +3,8 @@ public enum TargetPriority
     Closest,
     Furthest,
     MostHealth,
-    LeastHealth
+    LeastHealth,
+    Fastest,
+    Slowest
 }
 
