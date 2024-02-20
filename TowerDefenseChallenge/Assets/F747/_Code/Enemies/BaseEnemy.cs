@@ -5,18 +5,18 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour, IDamagable
 {
     [Header("SO Channels Dependenices")]
-    [SerializeField] private ScriptableEventFloat _onEnemyDeath;
-    [SerializeField] private ScriptableEventFloat _onEnemyArrival;
+    [SerializeField] private ScriptableEventInt _onEnemyDeath;
+    [SerializeField] private ScriptableEventInt _onEnemyArrival;
 
     [Header("Dependencies")]
     [SerializeField] private WayPointFollower _waypointFollower;
 
     private float _health = 100f;
-    private float _damageToPlayer = 1f;
-    private float _valueOnDeath = 1f;
+    private int _damageToPlayer = 1;
+    private int _valueOnDeath = 1;
     public float Health { get => _health; set => _health = value; }
-    public float DamageToPlayer { get => _damageToPlayer; set => _damageToPlayer = value; }
-    public float ValueOnDeath { get => _valueOnDeath; set => _valueOnDeath = value; }
+    public int DamageToPlayer { get => _damageToPlayer; set => _damageToPlayer = value; }
+    public int ValueOnDeath { get => _valueOnDeath; set => _valueOnDeath = value; }
 
     private void OnEnable()
     {

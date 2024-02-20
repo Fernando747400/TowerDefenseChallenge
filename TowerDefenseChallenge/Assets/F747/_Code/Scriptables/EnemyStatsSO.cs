@@ -4,9 +4,9 @@ using UnityEngine;
 public class EnemyStatsSO : ScriptableObject
 {
     public GameObject Prefab;
-    public float MaxHealth;
-    public float DamageToPlayer;
-    public float ValueOnDeath;
+    public int MaxHealth;
+    public int DamageToPlayer;
+    public int CoinsOnDeath;
     public Vector3 ModelScale;
     public float MoveSpeed;
     public float RotationSpeed;

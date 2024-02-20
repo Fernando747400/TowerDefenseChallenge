@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3299256104588423682, guid: e15b1cff4e778cb43adf098d3b15a659, type: 3}
   MaxHealth: 20
-  DamageToPlayer: 10
-  ValueOnDeath: 10
+  DamageToPlayer: -10
+  CoinsOnDeath: 10
   ModelScale: {x: 1, y: 1, z: 1}
   MoveSpeed: 1.2
   RotationSpeed: 4

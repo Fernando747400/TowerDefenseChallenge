@@ -504,8 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0438a6075e33c459db2f57542a8617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onEnemyDeath: {fileID: 11400000, guid: cbc6ed267e9397e4397b5b78519e595d, type: 2}
-  _onEnemyArrival: {fileID: 11400000, guid: bcc1e8b775905374780f9d2ff4ffef27, type: 2}
+  _onEnemyDeath: {fileID: 11400000, guid: dcf2516556667e94caa3474fd1e38eb3, type: 2}
+  _onEnemyArrival: {fileID: 11400000, guid: 6b1f33ac78ffed1449c042d834621e67, type: 2}
   _waypointFollower: {fileID: 8871220519332865621}
 --- !u!114 &8871220519332865621
 MonoBehaviour:

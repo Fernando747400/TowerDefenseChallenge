@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
     {
         BaseEnemy baseEnemy = newSpawn.GetComponentInChildren<BaseEnemy>();
         baseEnemy.Health = enemyStats.MaxHealth;
-        baseEnemy.ValueOnDeath = enemyStats.ValueOnDeath;
+        baseEnemy.ValueOnDeath = enemyStats.CoinsOnDeath;
         baseEnemy.DamageToPlayer = enemyStats.DamageToPlayer;
     }
 
