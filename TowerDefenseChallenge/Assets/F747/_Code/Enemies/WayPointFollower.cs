@@ -91,7 +91,7 @@ public class WayPointFollower : MonoBehaviour
 
     private void MoveToSpawn()
     {
-        transform.position = new Vector3(_waypointPosition.x, transform.position.y, _waypointPosition.z);
+        transform.position = _waypointPosition;
     }
 
     private void ArriveToLastCheckpoint()
