@@ -12,14 +12,18 @@ public class GameManager : MonoBehaviour
     [Required][SerializeField] private ScriptableEventNoParam _startedWave;
     [Required][SerializeField] private ScriptableEventNoParam _endedWave;
     [Required][SerializeField] private IntVariable _playerHealth;
+    [Required][SerializeField] private IntVariable _currentWave;
+    [Required][SerializeField] private IntVariable _enemiesThisWave;
 
-
+    
     [Header("Settings")]
+    [SerializeField] private int _enemiesPerWaveMultiplier = 5;
     [SerializeField] private GameState _gameState = GameState.Waiting;
 
     private void OnEnable()
     {
         _playerHealth.OnValueChanged += GameOver;
+        ResetValues();
     }
 
     private void OnDisable()
@@ -27,9 +31,12 @@ public class GameManager : MonoBehaviour
         _playerHealth.OnValueChanged -= GameOver;
     }
 
-    private void PlayWave()
+    public void PlayWave()
     {
         UpdateGameState(GameState.Playing);
+        _currentWave.Value++;
+        _enemiesThisWave.Value = _currentWave.Value * _enemiesPerWaveMultiplier;
+        _startedWave.Raise();
     }
 
     private void EndWave()
@@ -50,6 +57,14 @@ public class GameManager : MonoBehaviour
         _gameStateChannel.Raise(_gameState);
     }
 
+    private void ResetValues()
+    {
+        _currentWave.Value = 0;
+        _enemiesThisWave.Value = 0;
+    }
+
+    //====================================================================================================================//
+    //For testing only
     [Button]
     private void StartGame()
     {
