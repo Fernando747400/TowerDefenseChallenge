@@ -54,9 +54,11 @@ public class BasicProyectile : MonoBehaviour
         {
             Vector3 direction = _target.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
-        } else
+        }
+        else if (_target != null && Vector3.Distance(gameObject.transform.position, _target.transform.position) > 10f)
         {
             LeanPool.Despawn(gameObject);
         }
+        else if(_target == null) LeanPool.Despawn(gameObject);
     }
 }

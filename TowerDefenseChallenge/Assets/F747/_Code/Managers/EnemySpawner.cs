@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         {
             HandleSpawn(GetRandomEnemyStats(), GetRandomWaypointManager());
             _currentEnemiesSpawned++;
-            if (_currentBigEnemiesSpawned == _enemiesThisWave) _endedWaveChannel.Raise();
+            if (_currentEnemiesSpawned == _enemiesThisWave) _endedWaveChannel.Raise();
         }
         else
         {
