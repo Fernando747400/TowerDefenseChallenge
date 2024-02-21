@@ -8,6 +8,7 @@ TagManager:
   - Castle
   - enemyBug
   - Enemy
+  - TowerSocket
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class TargetAquisition : MonoBehaviour
     private GameObject _currentTarget;
 
     public GameObject CurrentTarget => _currentTarget;
+    public TargetPriority TargetPriority { get => _targetPriority; set => _targetPriority = value; }
 
     private void Update()
     {
