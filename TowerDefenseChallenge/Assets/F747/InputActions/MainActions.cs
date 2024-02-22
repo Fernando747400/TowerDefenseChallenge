@@ -35,6 +35,15 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainTouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6b7251c-e85d-4d09-b35e-406cc4e18762"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3be1bd64-dd18-4dd2-9689-08e36b4b8044"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainTouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -63,6 +83,7 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
         // PlayerInput
         m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
         m_PlayerInput_LeftClick = m_PlayerInput.FindAction("LeftClick", throwIfNotFound: true);
+        m_PlayerInput_MainTouch = m_PlayerInput.FindAction("MainTouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -125,11 +146,13 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerInput;
     private List<IPlayerInputActions> m_PlayerInputActionsCallbackInterfaces = new List<IPlayerInputActions>();
     private readonly InputAction m_PlayerInput_LeftClick;
+    private readonly InputAction m_PlayerInput_MainTouch;
     public struct PlayerInputActions
     {
         private @MainActions m_Wrapper;
         public PlayerInputActions(@MainActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftClick => m_Wrapper.m_PlayerInput_LeftClick;
+        public InputAction @MainTouch => m_Wrapper.m_PlayerInput_MainTouch;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -142,6 +165,9 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @MainTouch.started += instance.OnMainTouch;
+            @MainTouch.performed += instance.OnMainTouch;
+            @MainTouch.canceled += instance.OnMainTouch;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -149,6 +175,9 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @MainTouch.started -= instance.OnMainTouch;
+            @MainTouch.performed -= instance.OnMainTouch;
+            @MainTouch.canceled -= instance.OnMainTouch;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -178,5 +207,6 @@ public partial class @MainActions: IInputActionCollection2, IDisposable
     public interface IPlayerInputActions
     {
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnMainTouch(InputAction.CallbackContext context);
     }
 }

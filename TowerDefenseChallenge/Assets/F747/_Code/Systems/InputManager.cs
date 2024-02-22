@@ -18,11 +18,13 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         _playerInputs.PlayerInput.LeftClick.performed += ctx => OnLeftClick();
+        _playerInputs.PlayerInput.MainTouch.performed += ctx => OnMainTouch();
     }
 
     private void OnDisable()
     {
         _playerInputs.PlayerInput.LeftClick.performed -= ctx => OnLeftClick();
+        _playerInputs.PlayerInput.MainTouch.performed -= ctx => OnMainTouch();
     }
 
     private void OnLeftClick()
@@ -35,6 +37,26 @@ public class InputManager : MonoBehaviour
             if (hit.collider.TryGetComponent(out TowerSocket tower))
             {
                 _towerSocketChannel.Raise(tower);
+            }
+        }
+    }
+    
+    private void OnMainTouch()
+    {
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, _towersLayerMask))
+                {
+                    if (hit.collider.TryGetComponent(out TowerSocket tower))
+                    {
+                        _towerSocketChannel.Raise(tower);
+                    }
+                }
             }
         }
     }
