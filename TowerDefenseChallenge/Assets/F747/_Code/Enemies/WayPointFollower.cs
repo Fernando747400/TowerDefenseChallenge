@@ -1,10 +1,15 @@
 using Lean.Pool;
+using NaughtyAttributes;
+using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class WayPointFollower : MonoBehaviour
 {
+    [Header("SO Dependencies")]
+    [Required][SerializeField] private ScriptableEventNoParam _gameOverChannel;
+
     [HideInInspector] public UnityEvent OnArriveToLastCheckpoint = new UnityEvent();
 
     private float _moveSpeed = 1f;
@@ -27,6 +32,16 @@ public class WayPointFollower : MonoBehaviour
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        _gameOverChannel.OnRaised += GameOverDespawn;
+    }
+
+    private void OnDisable()
+    {
+        _gameOverChannel.OnRaised -= GameOverDespawn;
     }
 
     private void Start()
@@ -97,6 +112,11 @@ public class WayPointFollower : MonoBehaviour
     private void ArriveToLastCheckpoint()
     {
         OnArriveToLastCheckpoint.Invoke();
+        LeanPool.Despawn(gameObject);
+    }
+
+    private void GameOverDespawn()
+    {
         LeanPool.Despawn(gameObject);
     }
 }

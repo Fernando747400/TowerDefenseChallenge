@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Required][SerializeField] private ScriptableEventInt _enemyArrivedChannel;
     [Required][SerializeField] private ScriptableEventNoParam _startedWaveChannel;
     [Required][SerializeField] private ScriptableEventNoParam _endedWaveChannel;
+    [Required][SerializeField] private ScriptableEventNoParam _gameOverChannel;
     [Required][SerializeField] private IntVariable _playerHealth;
     [Required][SerializeField] private IntVariable _currentWave;
     [Required][SerializeField] private IntVariable _enemiesThisWave;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
        if(health > 0) return;
        UpdateGameState(GameState.GameOver);
+        _gameOverChannel.Raise();
     }
   
     private void UpdateGameState(Enum newState)

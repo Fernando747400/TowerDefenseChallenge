@@ -35,6 +35,7 @@ public class StoreManager : MonoBehaviour
             _playerCurrency.Value -= currentPrice;
             _currentSocket.BuildTower(tower);
         }
+        _currentSocketChannel.Raise(_currentSocket);
     }
 
     [Button]
@@ -52,6 +53,7 @@ public class StoreManager : MonoBehaviour
             _playerCurrency.Value -= currentPrice;
             _currentSocket.UpdateTower();
         }
+        _currentSocketChannel.Raise(_currentSocket);
     }
 
     [Button]
@@ -63,6 +65,7 @@ public class StoreManager : MonoBehaviour
 
         _playerCurrency.Value += towerGroup.TowerStatsSO[towerGroup.CurrentTower].SellValue;
         _currentSocket.DemolishTower();
+        _currentSocketChannel.Raise(_currentSocket);
     }
 
     private void UpdateTowerSocket(TowerSocket newTower)

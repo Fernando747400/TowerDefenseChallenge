@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598bcd1432f89b0429f0197550493737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameOverChannel: {fileID: 11400000, guid: 3852337de49c88a43a36f79b4a7d8769, type: 2}
   OnArriveToLastCheckpoint:
     m_PersistentCalls:
       m_Calls: []
