@@ -13894,11 +13894,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80d6b29eb112253459ea882aeccb878c, type: 2}
   - {fileID: 11400000, guid: fe91c9af7fd541b419a4a56d8f4d2cb9, type: 2}
   - {fileID: 11400000, guid: 3a679ae7c4119a44b89d609a607506b2, type: 2}
-  _spawnBigEnemiesAtWave: 10
+  _spawnBigEnemiesAtWave: 12
   _maxBigEnemyPerWaveDivition: 6
-  _spawnSmallEnemiesAtWave: 5
+  _spawnSmallEnemiesAtWave: 8
   _maxSmallEnemyPerWaveDivition: 4
-  _spawnInterval: 3
+  _spawnInterval: 2.8
 --- !u!4 &500429076
 Transform:
   m_ObjectHideFlags: 0

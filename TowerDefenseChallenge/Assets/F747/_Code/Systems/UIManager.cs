@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour
 
         Button updateButton = _updateButton.GetComponentInChildren<Button>();
         if (_currentTowerGroup == null) return;
-        if(_currentTowerGroup.CanUpdate() && currency > _currentTowerGroup.TowerStatsSO[_currentTowerGroup.CurrentTower + 1].CostToPurchase)
+        if(_currentTowerGroup.CanUpdate() && currency >= _currentTowerGroup.TowerStatsSO[_currentTowerGroup.CurrentTower + 1].CostToPurchase)
         {
             updateButton.interactable = true;
         } else

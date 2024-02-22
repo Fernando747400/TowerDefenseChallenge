@@ -17,6 +17,6 @@ MonoBehaviour:
   DamageToPlayer: -10
   CoinsOnDeath: 10
   ModelScale: {x: 0.5, y: 0.5, z: 0.5}
-  MoveSpeed: 1.8
+  MoveSpeed: 2
   RotationSpeed: 4
   ArriveDistance: 2

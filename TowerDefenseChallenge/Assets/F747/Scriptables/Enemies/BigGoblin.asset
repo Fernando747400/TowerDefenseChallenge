@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BigGoblin
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3299256104588423682, guid: e15b1cff4e778cb43adf098d3b15a659, type: 3}
-  MaxHealth: 50
-  DamageToPlayer: -10
-  CoinsOnDeath: 10
+  MaxHealth: 100
+  DamageToPlayer: -15
+  CoinsOnDeath: 30
   ModelScale: {x: 3, y: 3, z: 3}
-  MoveSpeed: 0.8
+  MoveSpeed: 0.7
   RotationSpeed: 4
   ArriveDistance: 1
